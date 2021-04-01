@@ -2,10 +2,11 @@
 # cryptocurrency-wallet
 A Cryptocurrency wallet app develop with React &amp; Typescript
 
-
+------
 Create a React Typescript project:
-npx create-react-app my-app --template typescript
+$ npx create-react-app my-app --template typescript
 
+See more in: https://create-react-app.dev/docs/adding-typescript/
 ---------------
 # Getting Started with Create React App
 
