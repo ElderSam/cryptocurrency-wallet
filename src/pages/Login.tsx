@@ -5,28 +5,23 @@ import { useAuth } from '../contexts/AuthContext'
 
 import './SignUp.css'
 
-export default function SignUp() {
+export default function Login() {
     const emailRef:any = useRef()
     const passwordRef:any = useRef()
-    const passwordConfirmRef:any = useRef()
 
-    const { signup } = useAuth()
+    const { login } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
     async function handleSubmit(e :any) {
         e.preventDefault()
 
-        if(passwordRef.current.value !== passwordConfirmRef.current.value) {
-            return setError('As senhas não conferem') // Passwords do not match
-        }
-
         try {
             setError('')
             setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value)
+            await login(emailRef.current.value, passwordRef.current.value)
         } catch {
-            setError('Falhou em criar uma conta') // Failed to create an account
+            setError('Falhou em Entrar') // Failed to create an account
         }
 
         setLoading(false)
@@ -34,7 +29,7 @@ export default function SignUp() {
     return(
         //console.log(JSON.stringify(currentUser))
         <div>
-            <h2>Cadastro de Usuário</h2>
+            <h2>Log In</h2>
             {error && <div className="statusMessage">{error}</div>}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
@@ -43,15 +38,12 @@ export default function SignUp() {
                 <label htmlFor="password">Senha</label>
                 <input type="password" id="password" ref={passwordRef} required />
 
-                <label htmlFor="password-confirm">Repita a Senha</label>
-                <input type="password" id="password-confirm" ref={passwordConfirmRef} required />
-
-                <input disabled ={loading} type="submit" value="Cadastrar"/>
+                <input disabled ={loading} type="submit" value="Entrar"/>
             </form>
             <div>
-                {/* Already have an account? Log In */}
-                Já tem uma conta?&nbsp;
-                <Link to="/login">Entrar</Link> 
+                {/* Do you need an account? Log In */}
+                Precisa de uma conta?&nbsp;
+                <Link to="/signup">Cadastrar</Link>
             </div>
         </div>
     )
