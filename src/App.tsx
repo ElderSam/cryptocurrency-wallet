@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import ForgotPassword from './pages/ForgotPassword';
 
 import './App.css';
 
@@ -22,6 +23,7 @@ function App() {
             <PrivateRoute exact path="/" component={Dashboard} />
             <Route path="/signup" component={SignUp} />
             <Route path="/login" component={Login} />
+            <Route path="/forgot-password" component={ForgotPassword} />
           </Switch>
         </AuthProvider>
       </Router>

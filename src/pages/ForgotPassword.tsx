@@ -1,52 +1,49 @@
 import React, { useRef, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../contexts/AuthContext'
 
 import './SignUp.css'
 
-export default function Login() {
+export default function ForgotPassword() {
     const emailRef:any = useRef()
-    const passwordRef:any = useRef()
 
-    const { login } = useAuth()
+    const { resetPassword } = useAuth()
     const [error, setError] = useState('')
+    const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
-    const history = useHistory()
 
     async function handleSubmit(e :any) {
         e.preventDefault()
 
         try {
+            setMessage('')
             setError('')
             setLoading(true)
-            await login(emailRef.current.value, passwordRef.current.value)
-            history.push("/") // go to Dashboard page
+            await resetPassword(emailRef.current.value)
+            setMessage('Verifique a sua Caixa de Entrada para mais instruções') // Check your inbox for further instructions
         } catch {
-            setError('Falhou em Entrar')
-            console.warn('Failed to Log In')
+            setError('Falha em redefinir a senha')
+            console.warn('Failed to Reset Password')
         }
 
         setLoading(false)
     }
-
     return(
         <div>
-            <h2>Log In</h2>
+            <h2>Redefinição de Senha</h2>
             {error && <div className="statusMessage">{error}</div>}
+            {message && <div className="success">{message}</div>}
 
             <div>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" ref={emailRef} required />
 
-                    <label htmlFor="password">Senha</label>
-                    <input type="password" id="password" ref={passwordRef} required />
-
-                    <input disabled ={loading} type="submit" value="Entrar"/>
+                    <input disabled ={loading} type="submit" value="Redefinir senha"/>
                 </form>
                 <div>
-                    <Link to="/forgot-password">Esqueceu sua senha?</Link>
+                    <Link to="/login">Entrar</Link>
                 </div>
             </div>
 

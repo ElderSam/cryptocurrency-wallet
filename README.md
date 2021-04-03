@@ -2,9 +2,19 @@
 # cryptocurrency-wallet
 A Cryptocurrency wallet app develop with React &amp; Typescript
 
-------
+# Setup 🚀
+
+## 1️⃣ Install the dependencies
+``$ npm install``
+
+## 2️⃣ Start the app
+``$ npm start``
+
+NOTE: You can use the [Temporary Mail](https://temp-mail.org/) to test this application
+
+---------------------------------------
 ## Create a React Typescript project:
-$ npx create-react-app my-app --template typescript
+``$ npx create-react-app my-app --template typescript``
 
 See more in: https://create-react-app.dev/docs/adding-typescript/
 
@@ -13,7 +23,8 @@ See more in: https://create-react-app.dev/docs/adding-typescript/
 Tutorial: https://www.youtube.com/watch?v=PKwu15ldZ7k&t=1s
 
 2. click to add the firebase to your web/mobile app
----------------
+
+----------------------------------------------------------------------------------------
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
