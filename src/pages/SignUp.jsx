@@ -9,7 +9,7 @@ export default function SignUp() {
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
 
-    const { signup, currentUser } = useAuth()
+    const { signup } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
@@ -34,7 +34,6 @@ export default function SignUp() {
         //console.log(JSON.stringify(currentUser))
         <div>
             <h2>Cadastro de Usuário</h2>
-            {currentUser && currentUser.email}
             {error && <div className="statusMessage">{error}</div>}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
