@@ -5,15 +5,15 @@ import { useAuth } from '../contexts/AuthContext'
 import './SignUp.css'
 
 export default function SignUp() {
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
+    const emailRef:any = useRef()
+    const passwordRef:any = useRef()
+    const passwordConfirmRef:any = useRef()
 
     const { signup } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e :any) {
         e.preventDefault()
 
         if(passwordRef.current.value !== passwordConfirmRef.current.value) {
