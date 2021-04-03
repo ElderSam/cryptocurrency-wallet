@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { useAuth } from '../contexts/AuthContext'
 
@@ -13,11 +13,13 @@ export default function SignUp() {
     const { signup } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const history = useHistory()
 
     async function handleSubmit(e :any) {
         e.preventDefault()
 
         if(passwordRef.current.value !== passwordConfirmRef.current.value) {
+            console.warn('Passwords do not match')
             return setError('As senhas não conferem') // Passwords do not match
         }
 
@@ -25,6 +27,7 @@ export default function SignUp() {
             setError('')
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value)
+            history.push("/")
         } catch {
             setError('Falhou em criar uma conta') // Failed to create an account
         }
