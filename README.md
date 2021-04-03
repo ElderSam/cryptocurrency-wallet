@@ -3,10 +3,16 @@
 A Cryptocurrency wallet app develop with React &amp; Typescript
 
 ------
-Create a React Typescript project:
+## Create a React Typescript project:
 $ npx create-react-app my-app --template typescript
 
 See more in: https://create-react-app.dev/docs/adding-typescript/
+
+## Configure Firebase
+1. access `http://console.firebase.google.com/` and create a new app
+Tutorial: https://www.youtube.com/watch?v=PKwu15ldZ7k&t=1s
+
+2. click to add the firebase to your web/mobile app
 ---------------
 # Getting Started with Create React App
 
