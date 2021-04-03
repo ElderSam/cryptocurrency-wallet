@@ -23,13 +23,13 @@ export default function Login() {
             await login(emailRef.current.value, passwordRef.current.value)
             history.push("/") // go to Dashboard page
         } catch {
-            setError('Falhou em Entrar') // Failed to create an account
+            setError('Falhou em Entrar')
+            console.warn('Failed to Log In')
         }
 
         setLoading(false)
     }
     return(
-        //console.log(JSON.stringify(currentUser))
         <div>
             <h2>Log In</h2>
             {error && <div className="statusMessage">{error}</div>}
