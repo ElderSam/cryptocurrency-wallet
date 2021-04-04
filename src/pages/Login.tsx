@@ -41,7 +41,7 @@ export default function Login() {
                     <input type="email" id="email" ref={emailRef} required />
 
                     <label htmlFor="password">Senha</label>
-                    <input type="password" id="password" ref={passwordRef} required />
+                    <input type="password" id="password" ref={passwordRef} required minLength={6} />
 
                     <input disabled ={loading} type="submit" value="Entrar"/>
                 </form>

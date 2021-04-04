@@ -44,10 +44,10 @@ export default function SignUp() {
                 <input type="email" id="email" ref={emailRef} required />
 
                 <label htmlFor="password">Senha</label>
-                <input type="password" id="password" ref={passwordRef} required />
+                <input type="password" id="password" ref={passwordRef} required minLength={6} />
 
                 <label htmlFor="password-confirm">Repita a Senha</label>
-                <input type="password" id="password-confirm" ref={passwordConfirmRef} required />
+                <input type="password" id="password-confirm" ref={passwordConfirmRef} required minLength={6} />
 
                 <input disabled ={loading} type="submit" value="Cadastrar"/>
             </form>
