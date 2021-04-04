@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useAuth } from '../contexts/AuthContext'
 
-import './SignUp.css'
+import './index.css'
 
 export default function ForgotPassword() {
     const emailRef:any = useRef()
