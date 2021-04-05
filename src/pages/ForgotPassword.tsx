@@ -1,11 +1,22 @@
 import React, { useRef, useState } from 'react'
-import { Link } from 'react-router-dom';
 
 import { useAuth } from '../contexts/AuthContext'
 
-import './index.css'
+
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Avatar from '@material-ui/core/Avatar';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+import useStyles from '../components/Theme'
 
 export default function ForgotPassword() {
+    const classes = useStyles()
+
     const emailRef:any = useRef()
 
     const { resetPassword } = useAuth()
@@ -29,29 +40,54 @@ export default function ForgotPassword() {
 
         setLoading(false)
     }
+
     return(
-        <div>
-            <h2>Redefinição de Senha</h2>
+        <Container component="main" maxWidth="xs">
+        <CssBaseline />
             {error && <div className="statusMessage">{error}</div>}
             {message && <div className="success">{message}</div>}
 
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email" ref={emailRef} required />
-
-                    <input disabled ={loading} type="submit" value="Redefinir senha"/>
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Redefinição de Senha
+                </Typography>
+                <form onSubmit={handleSubmit} className={classes.form} /*noValidate*/ >
+                    <TextField
+                        inputRef={emailRef}
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email"
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                    />
+                    <Button
+                        disabled ={loading}
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        // color="primary"
+                        className={classes.submit}
+                    >
+                        Redefinir senha
+                    </Button>
                 </form>
                 <div>
-                    <Link to="/login">Entrar</Link>
+                    <Link href="/login">Entrar</Link>
+                    <div>
+                        {/* Do you need an account? Log In */}
+                        Precisa de uma conta?&nbsp;
+                        <Link href="/signup">Cadastrar</Link>
+                    </div>
                 </div>
             </div>
-
-            <div>
-                {/* Do you need an account? Log In */}
-                Precisa de uma conta?&nbsp;
-                <Link to="/signup">Cadastrar</Link>
-            </div>
-        </div>
+        </Container>
     )
 }
