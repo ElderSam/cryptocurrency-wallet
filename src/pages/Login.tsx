@@ -76,7 +76,7 @@ export default function Login() {
                 </Typography>
                 <form onSubmit={handleSubmit} className={classes.form} /*noValidate*/ >
                     <TextField
-                        ref={emailRef}
+                        inputRef={emailRef}
                         variant="outlined"
                         margin="normal"
                         required
@@ -89,7 +89,7 @@ export default function Login() {
                         autoFocus
                     />
                     <TextField
-                        ref={passwordRef}
+                        inputRef={passwordRef}
                         inputProps={{ minLength: 6 }}
                         variant="outlined"
                         margin="normal"
