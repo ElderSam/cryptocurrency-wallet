@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 import useStyles from '../components/Theme';
+import Copyright from '../components/Copyright';
+
 import { useAuth } from '../contexts/AuthContext'
 
 export default function Login() {
@@ -102,7 +104,7 @@ export default function Login() {
                 </div>
             </div>
             <Box mt={8}>
-            {/* <Copyright /> */}
+            <Copyright />
             </Box>
         </Container>
     )
