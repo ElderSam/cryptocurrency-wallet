@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 import { useAuth } from './../contexts/AuthContext';
 
@@ -31,7 +32,7 @@ export default function Dashboard() {
             </div>
 
             <div>
-                <button onClick={handleLogout}>Log Out</button>
+                <Button variant="contained" color="secondary" onClick={handleLogout}>Log Out</Button>
             </div>
         </div>
     )
