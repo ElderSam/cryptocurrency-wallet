@@ -1,11 +1,23 @@
 import React, { useRef, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../contexts/AuthContext'
 
-import './index.css'
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Avatar from '@material-ui/core/Avatar';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+import useStyles from '../components/Theme'
+
 
 export default function SignUp() {
+    const classes = useStyles();
+
     const emailRef:any = useRef()
     const passwordRef:any = useRef()
     const passwordConfirmRef:any = useRef()
@@ -34,28 +46,77 @@ export default function SignUp() {
 
         setLoading(false)
     }
+
     return(
         //console.log(JSON.stringify(currentUser))
-        <div>
-            <h2>Cadastro de Usuário</h2>
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
             {error && <div className="statusMessage">{error}</div>}
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" ref={emailRef} required />
 
-                <label htmlFor="password">Senha</label>
-                <input type="password" id="password" ref={passwordRef} required minLength={6} />
-
-                <label htmlFor="password-confirm">Repita a Senha</label>
-                <input type="password" id="password-confirm" ref={passwordConfirmRef} required minLength={6} />
-
-                <input disabled ={loading} type="submit" value="Cadastrar"/>
-            </form>
-            <div>
-                {/* Already have an account? Log In */}
-                Já tem uma conta?&nbsp;
-                <Link to="/login">Entrar</Link> 
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                Cadastro de Usuário {/* Sign up */}
+                </Typography>
+                <form onSubmit={handleSubmit} className={classes.form} /*noValidate*/ >
+                    <TextField
+                        inputRef={emailRef}
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email"
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                    />
+                    <TextField
+                        inputRef={passwordRef}
+                        inputProps={{ minLength: 6 }}
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Senha"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                    />
+                    <TextField
+                        inputRef={passwordConfirmRef}
+                        inputProps={{ minLength: 6 }}
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Confirmação da Senha"
+                        type="password"
+                        id="password-confirm"
+                        autoComplete="current-password"
+                    />
+                    <Button
+                        disabled ={loading}
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        // color="primary"
+                        className={classes.submit}
+                    >
+                        Cadastrar
+                    </Button>
+                </form>
+                <div>
+                    {/* Already have an account? Log In */}
+                    Já tem uma conta?&nbsp;
+                    <Link href="/login">Entrar</Link> 
+                </div>
             </div>
-        </div>
+        </Container>
     )
 }
