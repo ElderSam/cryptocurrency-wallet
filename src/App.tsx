@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Box from '@material-ui/core/Box';
 
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivateRoute from './PrivateRoute';
 
 import Header from './components/Header';
+import Copyright from './components/Copyright';
+
 import Dashboard from './pages/Dashboard';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
@@ -29,6 +32,10 @@ function App() {
           </Switch>
         </AuthProvider>
       </Router>
+
+      <Box mt={8}>
+        <Copyright />
+      </Box>
 
     </div>
   );
