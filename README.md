@@ -24,6 +24,10 @@ Tutorial: https://www.youtube.com/watch?v=PKwu15ldZ7k&t=1s
 
 2. click to add the firebase to your web/mobile app
 
+
+tips:
+Templates for Material UI
+https://material-ui.com/pt/getting-started/templates/
 ----------------------------------------------------------------------------------------
 # Getting Started with Create React App
 
