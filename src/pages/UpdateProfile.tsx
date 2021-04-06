@@ -13,6 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import useStyles from '../components/Theme'
+import CustomizedSnackbars from '../components/material-ui/CustomizedSnackbars';
 
 export default function UpdateProfile() {
     const classes = useStyles();
@@ -23,6 +24,7 @@ export default function UpdateProfile() {
 
     const { currentUser, updatePassword, updateEmail } = useAuth()
     const [error, setError] = useState('')
+    const [updated, setUpdated] = useState(false)
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
@@ -48,7 +50,8 @@ export default function UpdateProfile() {
 
         Promise.all(promises)
             .then(() => {
-                history.push('/')
+                setUpdated(true)
+                setTimeout(() => history.push('/'), 2500) // redirects to home page after a while
             })
             .catch((err) => {
                 console.warn(err)
@@ -56,7 +59,6 @@ export default function UpdateProfile() {
             })
             .finally(() => {
                 console.log('Data updated')
-                alert('Dados atualizados com sucesso!')
                 setLoading(false)
             })
     }
@@ -65,7 +67,19 @@ export default function UpdateProfile() {
         //console.log(JSON.stringify(currentUser))
         <Container component="main" maxWidth="xs">
             <CssBaseline />
-            {error && <div className="statusMessage">{error}</div>}
+            {error &&
+                <CustomizedSnackbars
+                    type="error"
+                    message={error}
+                />
+            }
+
+            {updated &&
+                <CustomizedSnackbars
+                    type="success"
+                    message="Perfil atualizado com sucesso!"
+                />
+            }
 
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
