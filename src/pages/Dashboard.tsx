@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import { useAuth } from './../contexts/AuthContext';
 
 export default function Dashboard() {
-    const [error, setError] = useState("")
+    const [/*error*/, setError] = useState("")
     const { currentUser, logout } = useAuth()
     const history = useHistory()
 
@@ -28,11 +31,11 @@ export default function Dashboard() {
 
                 <div>Profile</div>
                 <strong>Email: </strong> {currentUser.email}
-                <Link to="/update-profile">Atualizar Perfil</Link>
+                <Link href="/update-profile">Atualizar Perfil</Link>
             </div>
 
             <div>
-                <Button variant="contained" color="secondary" onClick={handleLogout}>Log Out</Button>
+                <Button variant="contained" color="secondary" onClick={handleLogout}>Sair <ExitToAppIcon /></Button> {/* Log Out */}
             </div>
         </div>
     )
