@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+import ListCoins from '../components/ListCoins';
+
 import { useAuth } from './../contexts/AuthContext';
 
 export default function Dashboard() {
@@ -26,9 +28,8 @@ export default function Dashboard() {
     return (
         <div>
             <h1>Dashboard</h1>
+            <ListCoins />
             <div>
-
-
                 <div>Profile</div>
                 <strong>Email: </strong> {currentUser.email}
                 <Link href="/update-profile">Atualizar Perfil</Link>

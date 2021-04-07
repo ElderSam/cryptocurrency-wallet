@@ -1,0 +1,4 @@
+.list-coins {
+    display: flex;
+    justify-content: space-evenly;
+}
