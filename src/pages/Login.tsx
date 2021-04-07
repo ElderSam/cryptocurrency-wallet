@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 import useStyles from '../components/Theme';
+import CustomizedSnackbar from '../components/material-ui/CustomizedSnackbar';
 
 import { useAuth } from '../contexts/AuthContext'
 
@@ -33,9 +34,9 @@ export default function Login() {
             setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value)
             history.push("/") // go to Dashboard page
-        } catch {
-            setError('Falhou em Entrar')
-            console.warn('Failed to Log In')
+        } catch(err) {
+            setError(`Falhou em Entrar: Verifique se o Email ou senha estão corretos!`)
+            console.warn(`Failed to Log In: ${err}`)
         }
 
         setLoading(false)
@@ -44,7 +45,12 @@ export default function Login() {
     return(
         <Container component="main" maxWidth="xs">
             <CssBaseline />
-            {error && <div className="statusMessage">{error}</div>}
+            {error &&
+                <CustomizedSnackbar
+                    type="error"
+                    message={error}
+                />
+            }
 
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>

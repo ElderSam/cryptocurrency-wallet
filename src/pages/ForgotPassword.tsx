@@ -13,6 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import useStyles from '../components/Theme'
+import CustomizedSnackbar from '../components/material-ui/CustomizedSnackbar';
 
 export default function ForgotPassword() {
     const classes = useStyles()
@@ -33,9 +34,9 @@ export default function ForgotPassword() {
             setLoading(true)
             await resetPassword(emailRef.current.value)
             setMessage('Verifique a sua Caixa de Entrada para mais instruções') // Check your inbox for further instructions
-        } catch {
-            setError('Falha em redefinir a senha')
-            console.warn('Failed to Reset Password')
+        } catch(err) {
+            setError('Falha em redefinir a senha. Talvez o email esteja incorreto')
+            console.warn(`Failed to Reset Password: ${err}`)
         }
 
         setLoading(false)
@@ -44,8 +45,19 @@ export default function ForgotPassword() {
     return(
         <Container component="main" maxWidth="xs">
         <CssBaseline />
-            {error && <div className="statusMessage">{error}</div>}
-            {message && <div className="success">{message}</div>}
+            {error &&
+                <CustomizedSnackbar
+                    type="error"
+                    message={error}
+                />
+            }
+
+            {message &&
+                <CustomizedSnackbar
+                    type="success"
+                    message={message}
+                />
+            }
 
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>

@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import useStyles from '../components/Theme'
-import CustomizedSnackbars from '../components/material-ui/CustomizedSnackbars';
+import CustomizedSnackbar from '../components/material-ui/CustomizedSnackbar';
 
 export default function UpdateProfile() {
     const classes = useStyles();
@@ -68,14 +68,14 @@ export default function UpdateProfile() {
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             {error &&
-                <CustomizedSnackbars
+                <CustomizedSnackbar
                     type="error"
                     message={error}
                 />
             }
 
             {updated &&
-                <CustomizedSnackbars
+                <CustomizedSnackbar
                     type="success"
                     message="Perfil atualizado com sucesso!"
                 />

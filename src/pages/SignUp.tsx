@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import useStyles from '../components/Theme'
-
+import CustomizedSnackbar from '../components/material-ui/CustomizedSnackbar';
 
 export default function SignUp() {
     const classes = useStyles();
@@ -32,7 +32,7 @@ export default function SignUp() {
 
         if(passwordRef.current.value !== passwordConfirmRef.current.value) {
             console.warn('Passwords do not match')
-            return setError('As senhas não conferem') // Passwords do not match
+            return setError('Erro: As senhas não conferem') // Passwords do not match
         }
 
         try {
@@ -40,8 +40,9 @@ export default function SignUp() {
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value)
             history.push("/")
-        } catch {
-            setError('Falhou em criar uma conta') // Failed to create an account
+        } catch(err) {
+            console.warn(`Error: ${err}`)
+            setError(`Erro em criar uma conta: ${err}`) // Failed to create an account
         }
 
         setLoading(false)
@@ -51,7 +52,13 @@ export default function SignUp() {
         //console.log(JSON.stringify(currentUser))
         <Container component="main" maxWidth="xs">
             <CssBaseline />
-            {error && <div className="statusMessage">{error}</div>}
+            {error &&
+                <CustomizedSnackbar
+                    type="error"
+                    message={error}
+                    open={true}
+                />
+            }
 
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
